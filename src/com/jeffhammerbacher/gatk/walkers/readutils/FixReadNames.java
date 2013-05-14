@@ -1,23 +1,21 @@
 package com.jeffhammerbacher.gatk.walkers.readutils;
 
 import com.sun.tools.doclets.internal.toolkit.util.DocFinder;
+import net.sf.samtools.SAMFileWriter;
 import org.broadinstitute.sting.commandline.Output;
 import org.broadinstitute.sting.gatk.contexts.ReferenceContext;
 import org.broadinstitute.sting.gatk.refdata.RefMetaDataTracker;
 import org.broadinstitute.sting.gatk.walkers.ReadWalker;
 import org.broadinstitute.sting.utils.sam.GATKSAMRecord;
 
-import java.io.PrintStream;
-
-public class HelloRead extends ReadWalker<Integer, Integer> {
+public class FixReadNames extends ReadWalker<Integer, Integer> {
     @Output
-    public PrintStream out;
+    SAMFileWriter out;
 
     @Override
     public Integer map(ReferenceContext referenceContext, GATKSAMRecord gatksamRecord, RefMetaDataTracker refMetaDataTracker) {
-        out.println("Hello, " + gatksamRecord.getReadName() +
-                       " at " + gatksamRecord.getReferenceName() +
-                          ":" + gatksamRecord.getAlignmentStart());
+        gatksamRecord.setReadName(gatksamRecord.getReadGroup().getPlatformUnit() + "." + gatksamRecord.getReadName());
+        out.addAlignment(gatksamRecord);
         return null;
     }
 
