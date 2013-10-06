@@ -14,7 +14,7 @@ public class HelloRead extends ReadWalker<Integer, Integer> {
     @Override
     public Integer map(ReferenceContext referenceContext, org.broadinstitute.sting.utils.sam.GATKSAMRecord gatksamRecord, RefMetaDataTracker refMetaDataTracker) {
         out.println("Hello, " + gatksamRecord.getReadString() +
-                       " at " + referenceContext.getLocus().getStartLocation());
+                       " at " + referenceContext.getLocus());
         return null;
     }
 
