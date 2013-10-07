@@ -1,0 +1,1 @@
+An adaptation of the code from the presentation "[20-Line Lifesavers: Coding simple solutions in the GATK](http://www.slideshare.net/danbolser/20line-lifesavers-coding-simple-solutions-in-the-gatk)" to work with GATK 2.7.
